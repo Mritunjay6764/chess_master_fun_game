@@ -1,0 +1,36 @@
+# Dependencies
+node_modules/
+backend/node_modules/
+frontend/mobile-rebuild/node_modules/
+
+# Build output
+dist/
+backend/dist/
+frontend/mobile-rebuild/dist/
+coverage/
+
+# Expo / React Native
+.expo/
+frontend/mobile-rebuild/.expo/
+.expo-shared/
+
+# CodeGraph local index and database files
+.codegraph/*.db
+.codegraph/*.db-*
+.codegraph/*.sqlite
+.codegraph/*.sqlite3
+.codegraph/*.wal
+.codegraph/*.shm
+.codegraph/*.journal
+
+# Environment files
+.env
+.env.local
+.env.*.local
+backend/.env.local
+frontend/mobile-rebuild/.env.local
+
+# OS / editor junk
+.DS_Store
+Thumbs.db
+*.log

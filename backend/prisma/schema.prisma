@@ -1,0 +1,49 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  // Use DATABASE_URL env var:
+  //   Dev (SQLite):   DATABASE_URL="file:./dev.db"
+  //   Prod (Postgres): DATABASE_URL="postgresql://user:pass@host:5432/db"
+  // The 'provider' field must match the DB type.
+  // For production, change provider to "postgresql" and update DATABASE_URL.
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  username     String   @unique
+  passwordHash String
+  elo          Int      @default(1000)
+  wins         Int      @default(0)
+  losses       Int      @default(0)
+  draws        Int      @default(0)
+  gamesPlayed  Int      @default(0)
+  fcmToken     String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  gamesAsWhite  Game[] @relation("WhitePlayer")
+  gamesAsBlack  Game[] @relation("BlackPlayer")
+}
+
+model Game {
+  id            String    @id @default(uuid())
+  whitePlayerId String
+  blackPlayerId String
+  fen           String    @default("rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1")
+  pgn           String    @default("")
+  status        String    @default("IN_PROGRESS")
+  winner        String?
+  reason        String?
+  whiteTime     Int       @default(600000)
+  blackTime     Int       @default(600000)
+  moves         String    @default("[]")
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  completedAt   DateTime?
+  whitePlayer   User      @relation("WhitePlayer", fields: [whitePlayerId], references: [id])
+  blackPlayer   User      @relation("BlackPlayer", fields: [blackPlayerId], references: [id])
+}

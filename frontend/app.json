@@ -1,0 +1,47 @@
+{
+  "expo": {
+    "name": "Chess Master",
+    "slug": "chess-master",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "icon": "./src/assets/icon.png",
+    "splash": {
+      "image": "./src/assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0F1418"
+    },
+    "ios": {
+      "supportsTablet": false,
+      "bundleIdentifier": "com.chessmaster.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "NSAppTransportSecurity": {
+          "NSAllowsArbitraryLoads": true
+        },
+        "UIBackgroundModes": ["audio"]
+      }
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./src/assets/adaptive-icon.png",
+        "backgroundColor": "#0F1418"
+      },
+      "package": "com.chessmaster.app",
+      "versionCode": 1,
+      "usesCleartextTraffic": true,
+      "permissions": ["VIBRATE"]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "replace-with-your-eas-project-id"
+      }
+    },
+    "plugins": [
+      "expo-audio"
+    ],
+    "updates": {
+      "fallbackToCacheTimeout": 0
+    }
+  }
+}
